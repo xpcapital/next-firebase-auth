@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin'
+import { applicationDefault } from 'firebase-admin/app'
 import { getConfig } from 'src/config'
 
 const initFirebaseAdminSDK = () => {
@@ -11,9 +12,7 @@ const initFirebaseAdminSDK = () => {
     }
     admin.initializeApp({
       ...firebaseAdminInitConfig,
-      credential: admin.credential.cert({
-        ...firebaseAdminInitConfig.credential,
-      }),
+      credential: applicationDefault(),
     })
   }
   return admin
